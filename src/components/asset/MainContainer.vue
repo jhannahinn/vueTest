@@ -9,6 +9,9 @@
         <div class="Time">
             01 : 33 : 27
         </div>
+        <div class="Date">
+            2022.04.07 ~ 2022.04.08
+        </div>
     </div>
 </template>
 
@@ -28,7 +31,7 @@ export default {
     flex-direction: column;
 
     width: 202px;
-    padding: 38.5px 20px;
+    padding: 29.5px 20px;
 }
 .Title {
     position: static;
@@ -116,6 +119,34 @@ export default {
     flex-grow: 1;
     margin: 9px;
     margin-left: 28px;
+}
+.Date {
+        position: static;
+    width: 202px;
+    height: 18px;
+    left: 28px;
+    top: 0px;
+
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    /* identical to box height, or 129% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.05em;
+
+    color: #222222;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    margin: 9px 0px;
 }
 
 </style>
