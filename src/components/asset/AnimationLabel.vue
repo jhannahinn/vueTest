@@ -1,28 +1,34 @@
 <template lang="html">
-    <!-- <div class="Label" @click="select">
-        <transition name="fade">
-            <div class="LabelContainer">
-                ldfkjasldks
-            </div>
-        </transition>
-    </div> -->
-    <!-- 라벨 오픈만 구현, 애니메이션 미구현 -->
-    <div class="Label" @click="select">
+    <div class="Label" @click="select, show = !show">
+        <!--  -->
+        <Transition name="bounce">
+            <!-- <div class="LabelAnimate" v-if="show == true"></div> -->
+            <p v-if="show" style="margin-top: 20px; text-align: center;"></p>
+        </Transition>
+        <!--  -->
         <div class="LabelContainer">
-            ldfkjasldks
+            label1
         </div>
     </div>
 </template>
 
 <script>
+//
+
+//
+
 export default {
     data() {
         return {
             labelWidth: "",
             currentWidth: "",
-            labelHeight: "",
+            labelHeight: "36px",
             currentHeight: "",
+            firstOpen: 0,
             ifSelect: -1,
+            fadeWidth: 26.0, // string -> float 형변환 가능해지면 사용가능
+            fadeLevel: 0.0,
+            show: false,
             }
         },
     props: {
@@ -49,15 +55,6 @@ export default {
     //     }
     // }
     methods: {
-        activate() {
-            setTimeout(() => this.isHidden = false, 500);
-        },
-        cancelMask: function () {
-            var self = this;
-            setTimeout(() => {
-                self.labelWidth = "50px";
-            }, 500);
-        },
         select: function() {
             this.ifSelect *= -1;
             console.log(this.ifSelect);
@@ -71,50 +68,68 @@ export default {
             console.log("currentHeight: ", this.currentHeight);
 
             if(this.ifSelect == 1) {
-                // console.log('labelWidth(1): ', this.labelWidth);
-                setTimeout(function(){ 
+                if(this.firstOpen == 0) {
                     document.getElementsByClassName("Label")[0].style.width = "auto";
                     document.getElementsByClassName("LabelContainer")[0].style.visibility = "visible";
-                    self.labelWidth = window.getComputedStyle(document.getElementsByClassName("Label")[0]).width;
+                    this.firstOpen = 1;
+                    this.labelWidth = window.getComputedStyle(document.getElementsByClassName("Label")[0]).width;
+                    this.labelHeight = window.getComputedStyle(document.getElementsByClassName("LabelContainer")[0]).height;
+                    document.getElementsByClassName("Label")[0].style.width = "48px";
                     document.getElementsByClassName("LabelContainer")[0].style.visibility = "hidden";
-                    // self.labelWidth 길이 가져옴
-                    document.getElementsByClassName("Label")[0].style.width = self.labelWidth;
-                    // console.log('labelWidth(2): ', self.labelWidth);
-                    // console.log('Label Width: ', window.getComputedStyle(document.getElementsByClassName("Label")[0]).width );
-                    // Label 길이 늘림
-                    setTimeout(function(){ document.getElementsByClassName("LabelContainer")[0].style.visibility = "visible"; }, 200);
-                    // LabelContainer
-                    clearTimeout();
-                    }, 10);
-                    clearTimeout();
+                    this.fadeWidth = 26.0; // labelWidth 결정되고 지정
+                    this.fadeLevel = this.fadeWidth / 10.0;
+                    console.log(this.fadeWidth, ", ", this.fadeLevel);
+                } // 첫번째로 라벨 열었을 때에만 labelWidth, labelHeight 저장
+                for(var i = 0; i < 10; i++) {
+                    document.getElementsByClassName("Label")[0].style.width = (48.0 + (i + 1) * this.fadeLevel) + "px";
+                    console.log((48.0 + (i + 1) * this.fadeLevel) + "px");
                 }
+                document.getElementsByClassName("LabelContainer")[0].style.visibility = "visible";
+                }
+                
             if(this.ifSelect == -1) { 
-                setTimeout(function(){ 
-                    self.labelWidth = window.getComputedStyle(document.getElementsByClassName("LabelContainer")[0]).width;
-                    // self.labelWidth 길이 가져옴
-                    document.getElementsByClassName("LabelContainer")[0].style.width = self.labelWidth;
-                    document.getElementsByClassName("LabelContainer")[0].style.visibility = "hidden";
-                    // Label 길이 유지하면서 LabelContainer 닫음
-                    setTimeout(function(){ document.getElementsByClassName("Label")[0].style.width = "48px"; }, 150);
-                    // Label 길이 줄임
-                    }, 10);
-                    clearTimeout();
-                clearTimeout();
+                document.getElementsByClassName("Label")[0].style.width = "48px";
+                document.getElementsByClassName("LabelContainer")[0].style.visibility = "hidden";
                 }
         }
     }
 }
-// if(this.fadeLevel == 1) {
-//     document.getElementsByClassName("Label")[0].style.width = this.labelWidth;
-//     this.fadeLevel = 2;
-// }
-// if(this.fadeLevel == 2) {
-//     document.getElementsByClassName("LabelContainer")[0].style.visibility = "visible";
-//     this.fadeLevel = 0;
-// }
 </script>
 
 <style lang="css" scoped>
+/*  */
+.bounce-enter-active {
+    animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+    animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+    0% {
+        transform: scale(0, 1);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+.LabelAnimate {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    position: static;
+    min-width: 48px;
+    width: 74px;
+    height: 10px;
+    left: 20px;
+    top: 20px;
+
+
+    background: #3192CA;
+    border-radius: 4px;
+}
+/*  */
+
 .Label {
     display: flex;
     flex-direction: row;
@@ -139,7 +154,7 @@ export default {
     padding: 10px;
 
     position: static;
-    min-width: 48px;
+    min-width: 74px; /* 이거 빼면 Label이 튀어나옴 */
     width: auto;
     left: 20px;
     top: 0px;
