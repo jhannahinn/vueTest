@@ -6,7 +6,6 @@
             </div>
         </transition>
     </div> -->
-    <!-- 라벨 오픈만 구현, 애니메이션 미구현 -->
     <div class="Label" @click="select">
         <div class="LabelContainer">
             ldfkjasldks
