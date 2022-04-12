@@ -1,29 +1,34 @@
 <template lang="html">
     <div class="MainContainer">
         <div class="Title">
-            수학
+            {{ titleIndex }}
         </div>
         <div class="Description">
-            수학 현우진T 강의 15강 보기
+            {{ descriptionIndex }}
         </div>
         <div class="Time">
-            01 : 33 : 27
+            {{ hour }} : {{ minute }} : {{ second }}
         </div>
         <div class="Date">
-            2022.04.07 ~ 2022.04.08
+            {{ startDate }} ~ {{ endDate }}
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "MainContainer",
     data() {
         return {
-            
-            }
-        },
-    }
+            titleIndex: "수학",
+            descriptionIndex: "수학 현우진T 강의 15강 보기",
+            hour: "01",
+            minute: "33",
+            second: "27",
+            startDate : "2022.04.07",
+            endDate : "2022.04.08",
+        }
+    },
+}
 </script>
 
 <style lang="css" scoped>
