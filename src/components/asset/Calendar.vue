@@ -32,6 +32,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.Calendar {
+    width: 280px;
+}
 .Weekdays {
     display: flex;
     flex-direction: row;
@@ -40,7 +43,6 @@ export default {
     margin-top: 30px;
     margin-bottom: 12px;
     justify-content: space-around;
-    /* 미묘하게 다른데 반응형이면 필요할 듯 */
 }
 .Sun, .Mon, .Tue, .Wed, .Thu, .Fri, .Sat {
     position: static;

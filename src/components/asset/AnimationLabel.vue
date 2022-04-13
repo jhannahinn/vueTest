@@ -1,11 +1,5 @@
 <template lang="html">
-    <div class="Label" @click="select, show = !show">
-        <!--  -->
-        <Transition name="bounce">
-            <!-- <div class="LabelAnimate" v-if="show == true"></div> -->
-            <p v-if="show" style="margin-top: 20px; text-align: center;"></p>
-        </Transition>
-        <!--  -->
+    <div class="AnimationLabel" @click="select, show = !show">
         <div class="LabelContainer">
             label1
         </div>
@@ -13,9 +7,6 @@
 </template>
 
 <script>
-//
-
-//
 
 export default {
     data() {
@@ -34,26 +25,6 @@ export default {
     props: {
         label: String
     },
-    // methods: {
-    //     select: function() {
-    //         this.ifSelect *= -1;
-    //         console.log(this.ifSelect);
-    //         // console.log(window.getComputedStyle(document.getElementsByClassName("LabelContainer")[0]).width);
-    //         this.labelWidth = window.getComputedStyle(document.getElementsByClassName("LabelContainer")[0]).width;
-    //         this.currentWidth = window.getComputedStyle(document.getElementsByClassName("Label")[0]).width;
-    //         console.log("labelWidth(select()): ", this.labelWidth);
-    //         console.log("currentWidth(select()): ", this.currentWidth);
-
-    //         if(this.ifSelect == 1) {
-    //             document.getElementsByClassName("Label")[0].style.width = "auto";
-    //             document.getElementsByClassName("LabelContainer")[0].style.visibility = "visible";
-    //             }
-    //         if(this.ifSelect == -1) { 
-    //             document.getElementsByClassName("Label")[0].style.width = "48px";
-    //             document.getElementsByClassName("LabelContainer")[0].style.visibility = "hidden";
-    //             }
-    //     }
-    // }
     methods: {
         select: function() {
             this.ifSelect *= -1;
@@ -130,12 +101,12 @@ export default {
 }
 /*  */
 
-.Label {
+.AnimationLabel {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 
-    position: absolute;
+    position: static;
     min-width: 48px;
     width: 48px;
     height: 10px;
