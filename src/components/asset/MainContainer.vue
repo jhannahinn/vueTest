@@ -17,15 +17,18 @@
 
 <script>
 export default {
+    props: {
+        titleIndex: String,
+        descriptionIndex: String,
+        hour: String,
+        minute: String,
+        second: String,
+        startDate: String,
+        endDate: String,
+    },
     data() {
         return {
-            titleIndex: "수학",
-            descriptionIndex: "수학 현우진T 강의 15강 보기",
-            hour: "01",
-            minute: "33",
-            second: "27",
-            startDate : "2022.04.07",
-            endDate : "2022.04.08",
+
         }
     },
 }

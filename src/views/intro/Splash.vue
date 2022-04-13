@@ -3,13 +3,13 @@
     <timeout-label label="timeoutlabel"></timeout-label>
     <animation-label></animation-label>
     <main-container
-        titleIndex="수학"
-        descriptionIndex="수학 현우진T 강의 15강 보기"
+        title-index="수학"
+        description-index="수학 현우진T 강의 15강 보기"
         hour="01"
         minute="33"
         second="27"
-        startDate="2022.04.07"
-        endDate="2022.04.08"
+        start-date="2022.04.07"
+        end-date="2022.04.08"
     ></main-container>
     <calendar></calendar>
 </template>
@@ -22,15 +22,6 @@ import MainContainer from "../../components/asset/MainContainer.vue";
 import Calendar from "../../components/asset/Calendar.vue";
 
 export default {
-    props: [
-        "titleIndex",
-        "descriptionIndex",
-        "hour",
-        "minute",
-        "second",
-        "startDate",
-        "endDate",
-    ],
     components: {
         // MyLabel,
         TimeoutLabel,
