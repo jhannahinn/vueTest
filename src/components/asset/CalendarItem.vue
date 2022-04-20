@@ -77,7 +77,10 @@ export default {
                 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0]
+                0, 0, 0, 0, 0, 0, 0],
+            monthMax: [31, 28, 31, 30, 31, 30,
+                    31, 31, 30, 31, 30, 31],
+            leapYear: false,
         };
     },
     // setup() {
@@ -102,28 +105,42 @@ export default {
     // vue3 문법으로 변환해야 함 (저거만 하면 안먹힘)
     mounted() {
         // 1-12월만 Calendar 에서 받아옴 (예외 거기서)
-        let totalDays = 0;
-            if (this.mm == 1 || this.mm == 3 || this.mm == 5 || this.mm == 7
-            || this.mm == 8 || this.mm == 10 || this.mm == 12) {
-                totalDays = 31;
-            } else if (this.mm == 4 || this.mm == 6 || this.mm == 9 || this.mm == 11) {
-                totalDays = 30;
-            } // 아래부터 2월, 윤년 계산
-            else if (this.yyyy % 400 == 0) {
-                totalDays = 29;
-            } else if (this.yyyy % 100 != 0 && this.yyyy % 4 == 0) {
-                totalDays = 29;
-            } else {
-                totalDays = 28;
-            }
-
-        console.log("this.mm: ", this.mm);
-        console.log("totalDays: ", totalDays);
-
-        for (var j = 0; j < totalDays; j++) {
-            this.cel[j + 2] = j + 1;
+        if (this.yyyy % 400 == 0) {
+            this.leapYear = true;
+        } else if (this.yyyy % 100 != 0 && this.yyyy % 4 == 0) {
+            this.leapYear = true;
         }
-        // temp
+
+        if (this.leapYear == true) { this.monthMax[1] = 29; }
+
+        var totalDays = this.monthMax[this.mm - 1];
+
+        // 2020년 1월 기준 (1일 수요일)
+        // 윤년 계산 2099년까지만 (4년마다)
+
+        // 같은 년도 1월까지 맞추기
+        var setYear = 2020;
+        var setDay = 3;
+        while (this.yyyy > setYear) {
+            if (setYear % 4 == 0) {
+                setDay += 2;
+            } else {
+                setDay += 365;
+            }
+            setYear++;
+        }
+        if (setDay > 6) { setDay = setDay % 7; }
+
+        // 월 맞추기
+        for (var i = 0; i < this.mm - 1; i++) {
+            setDay += this.monthMax[i];
+        }
+        if (setDay > 6) { setDay = setDay % 7; }
+
+        // 표시
+        for (var j = 0; j < totalDays; j++) {
+            this.cel[setDay + j] = j + 1;
+        }
     }
 };
 </script>
