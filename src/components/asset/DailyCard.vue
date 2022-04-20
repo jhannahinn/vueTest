@@ -57,9 +57,11 @@
 
 <script>
 export default {
+    props: {
+        date: Number,
+    },
     data() {
         return {
-            date: 27,
             toDo: 9,
             today: 26, // 오늘 날짜인지 확인 -> 배경색 변경 용도
             }
@@ -74,6 +76,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 .DailyCard {
     display: flex;
     flex-direction: column;

@@ -1,7 +1,7 @@
 <template lang="html">
     <!-- <my-label></my-label> -->
     <timeout-label label="timeoutlabel"></timeout-label>
-    <animation-label></animation-label>
+    <animation-label label="animation"></animation-label>
     <main-container
         title-index="수학"
         description-index="수학 현우진T 강의 15강 보기"
@@ -16,10 +16,11 @@
 
 <script>
 // import MyLabel from '../../components/asset/MyLabel.vue'
-import TimeoutLabel from "../../components/asset/TimeoutLabel.vue";
-import AnimationLabel from "../../components/asset/AnimationLabel.vue";
-import MainContainer from "../../components/asset/MainContainer.vue";
-import Calendar from "../../components/asset/Calendar.vue";
+import TimeoutLabel from "@/components/asset/TimeoutLabel.vue";
+import AnimationLabel from "@/components/asset/AnimationLabel.vue";
+import MainContainer from "@/components/asset/MainContainer.vue";
+import Calendar from "@/components/asset/Calendar.vue";
+import {reactive} from 'vue'
 
 export default {
     components: {
@@ -29,9 +30,16 @@ export default {
         MainContainer,
         Calendar,
     },
-    data() {
-        return {};
-    },
+    setup(){
+        const state = reactive({
+            test : 'eeee'
+        })
+
+
+        return{
+            state
+        }
+    }
 };
 </script>
 

@@ -1,6 +1,8 @@
 <template lang="html">
     <div class="Calendar">
-        <month></month>
+        <month
+            :yyyy="yyyyCal"
+            :mm="mmCal"></month>
         <div class="Weekdays">
             <div class="Sun">sun</div>
             <div class="Mon">mon</div>
@@ -10,7 +12,9 @@
             <div class="Fri">fri</div>
             <div class="Sat">sat</div>
         </div>
-        <calendar-item></calendar-item>
+        <calendar-item
+            :yyyy="yyyyCal"
+            :mm="mmCal"></calendar-item>
     </div>
 </template>
 
@@ -19,13 +23,17 @@ import Month from '../../components/asset/Month.vue'
 import CalendarItem from '../../components/asset/CalendarItem.vue'
 
 export default {
+    name: "Calendar",
     components: {
         Month,
         CalendarItem,
     },
+    props: {
+    },
     data() {
         return {
-
+            yyyyCal: 2022,
+            mmCal: 3,
             }
         },
     }
@@ -33,12 +41,13 @@ export default {
 
 <style lang="css" scoped>
 .Calendar {
-    width: 280px;
+    min-width: 280px;
+    max-width: 600px;
 }
 .Weekdays {
     display: flex;
     flex-direction: row;
-    width: 280px;
+    /* min-width, max-width Calendar class 속성 따름 */
 
     margin-top: 30px;
     margin-bottom: 12px;

@@ -9,24 +9,44 @@
             {{ yyyy }}
         </div>
         <div class="Date">
-            {{ mm }}
+            {{ tempMM }}
         </div>
         <div class="Date">
-            {{ dd }}
+            {{ tempDD }}
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    name: "Month",
+    props: {
+        yyyy: Number,
+        mm: Number,
+        dd: Number,
+    },
     data() {
         return {
-            yyyy: "2022",
-            mm: "01",
-            dd: "27",
-            }
-        },
-    }
+            tempMM: this.mm,
+            tempDD: this.dd,
+        };
+    },
+    mounted() {
+        if (this.mm < 10) {
+            this.tempMM = "0" + this.mm;
+        } else {
+            this.tempMM = this.mm;
+        }
+
+        if (this.dd < 10) {
+            this.tempDD = "0" + this.dd;
+        } else if (this.dd < 1) {
+            this.tempDD = "";
+        } else {
+            this.tempDD = this.dd;
+        }
+    },
+};
 </script>
 
 <style lang="css" scoped>
@@ -43,7 +63,7 @@ export default {
     left: 34px;
     top: 0px;
 
-    font-family: 'Noto Sans KR';
+    font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -54,7 +74,7 @@ export default {
     flex-direction: row;
     align-items: center;
 
-    color: #373A3C;
+    color: #373a3c;
 }
 .Rectangles {
     position: flex;
@@ -67,7 +87,7 @@ export default {
     height: 1.77px;
     margin-bottom: 4.34px;
 
-    background: #373A3C;
+    background: #373a3c;
 }
 .Rectangle2 {
     position: flex;
@@ -75,21 +95,21 @@ export default {
     height: 1.77px;
     margin-bottom: 4.34px;
 
-    background: #373A3C;
+    background: #373a3c;
 }
 .Rectangle3 {
     position: flex;
     width: 5.33px;
     height: 1.77px;
 
-    background: #373A3C;
+    background: #373a3c;
 }
 .Year {
     position: static;
     width: 43px;
     height: 24px;
 
-    font-family: 'Noto Sans KR';
+    font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -99,7 +119,7 @@ export default {
     align-items: center;
     text-align: center;
 
-    color: #373A3C;
+    color: #373a3c;
 }
 .Date {
     position: static;
@@ -108,7 +128,7 @@ export default {
 
     margin-left: 10px;
 
-    font-family: 'Noto Sans KR';
+    font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -118,7 +138,6 @@ export default {
     align-items: center;
     text-align: center;
 
-    color: #373A3C;
+    color: #373a3c;
 }
-
 </style>
