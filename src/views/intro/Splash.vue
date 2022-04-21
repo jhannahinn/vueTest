@@ -1,34 +1,20 @@
 <template lang="html">
-    <!-- <my-label></my-label> -->
-    <timeout-label label="timeoutlabel"></timeout-label>
-    <animation-label label="animation"></animation-label>
-    <main-container
-        title-index="수학"
-        description-index="수학 현우진T 강의 15강 보기"
-        hour="01"
-        minute="33"
-        second="27"
-        start-date="2022.04.07"
-        end-date="2022.04.08"
-    ></main-container>
-    <calendar></calendar>
+    <!-- <dash-board></dash-board> -->
+    <!-- <login01></login01> -->
+    <login02></login02>
 </template>
 
 <script>
-// import MyLabel from '../../components/asset/MyLabel.vue'
-import TimeoutLabel from "@/components/asset/TimeoutLabel.vue";
-import AnimationLabel from "@/components/asset/AnimationLabel.vue";
-import MainContainer from "@/components/asset/MainContainer.vue";
-import Calendar from "@/components/asset/Calendar.vue";
+// import DashBoard from "@/views/main/DashBoard.vue";
+// import Login01 from "@/views/main/Login01.vue";
+import Login02 from "@/views/main/Login02.vue";
 import {reactive} from 'vue'
 
 export default {
     components: {
-        // MyLabel,
-        TimeoutLabel,
-        AnimationLabel,
-        MainContainer,
-        Calendar,
+        // DashBoard,
+        // Login01,
+        Login02,
     },
     setup(){
         const state = reactive({
@@ -43,4 +29,36 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+.Title {
+    position: static;
+    height: 24px;
+
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    margin: 10px 10px 20px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.1em;
+
+    color: #373A3C;
+}
+.AdView {
+    background: #333333;
+    border-radius: 4px;
+    width: auto;
+    height: 60px;
+    margin: 0px 8px 0px;
+}
+.CalendarView {
+    margin: 35px 11px 0px;
+}
+</style>

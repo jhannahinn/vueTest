@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Month from '../../components/asset/Month.vue'
-import CalendarItem from '../../components/asset/CalendarItem.vue'
+import Month from '@/components/asset/Month.vue'
+import CalendarItem from '@/components/asset/CalendarItem.vue'
 
 export default {
     name: "Calendar",

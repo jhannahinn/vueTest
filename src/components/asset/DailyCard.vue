@@ -83,15 +83,15 @@ export default {
     align-items: center;
 
     position: static;
-    width: 40px;
-    height: 52px;
+    min-width: 40px;
+    height: 60px;
 
     border-radius: 4px;
 
     background: none;
 }
 .IsToday {
-    width: 40px;
+    min-width: 40px;
     height: 52px;
     border-radius: 4px;
 
